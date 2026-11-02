@@ -16,6 +16,8 @@ public class MainApp {
 
       UserService userService = context.getBean(UserService.class);
 
+//       userService.clearUsers();
+
       User user1 = new User("Дмитрий", "Иванов", "Dmitriy.Ivanov@mail.ru");
       user1.setCar(new Car("BMW", 135));
 
@@ -46,8 +48,11 @@ public class MainApp {
       }
 
       User found = userService.getUserByCarModelAndSeries("Toyota", 156);
-      System.out.println(found != null ? "Владелец Toyota 156: " + found.getFirstName() + " " + found.getLastName() :  "Не найден");
-//      userService.clearUsers();
+      if (found != null)  {
+          System.out.println("Владелец Toyota 156: " + found.getFirstName() + " " + found.getLastName());
+      } else {
+          System.out.println("Владелец Toyota 156 не найден");
+      }
 
       context.close();
    }
